@@ -24,18 +24,33 @@ public class PilaNombress {
 
     public void MenuSwitch(int opcion){
 
+            String nombre=null;
+
+            int ind=0;
+
         switch(opcion){
             case 1:
-                Insertar();
+                Capturar();
                 break;
             case 2:
-                
+                nombre=PilaNombres.pop();
+                System.out.println(nombre + "ha sido eliminado");
                 break;
             case 3:
-                
+                System.out.println("introduzca el nombre a modificar: ");
+                nombre=Leer.next();
+                ind=PilaNombres.indexOf(nombre);
+                if (ind!=-1){
+                    System.out.print("capture nuevo nombre:");
+                    nombre=Leer.next();
+                    PilaNombres.set(ind, nombre);
+
+                }else 
+                    System.out.println("nombre no encontrado");
+
                 break;
             case 4:
-                
+                System.out.println(PilaNombres);
                 break;
             case 5:
                 System.out.println("Saliendo del programa");
@@ -48,16 +63,19 @@ public class PilaNombress {
         }
     }
 
-    public void Insertar(){
+    public void Capturar(){
         String nombre;
-        System.out.println("Introduzca el nombre a insertar:");
+        System.out.println("nombre: ");
         nombre = Leer.next();
-        PilaNombres.push(nombre);
+        Insertar(nombre);
     }
 
-    public void Capturar(){
-        
+    public void Insertar(String nombre){
+
+        PilaNombres.push(nombre);
+
     }
+
 
     public static void main(String[] args) {
 
