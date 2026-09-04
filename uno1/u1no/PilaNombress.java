@@ -5,11 +5,21 @@ import java.util.Stack;
 
 public class PilaNombress {
 
+    Runtime runtime = Runtime.getRuntime();
+
     Stack <String> PilaNombres = new Stack<String>();
     Scanner Leer= new Scanner(System.in);
+    
 
-    public void MenuCons(){
-        int opcion=0;
+    public int MenuCons(){
+        long maxM = runtime.maxMemory();
+        long freeM = runtime.freeMemory();
+        long usedM = maxM - freeM;
+        System.out.println("Memoria maxima: " + maxM + " bytes");
+        System.out.println("Memoria libre: " + freeM + " bytes");
+        System.out.println("Memoria utilizada: " + usedM + " bytes");
+        
+        int opcion=0, i=0;
         System.out.println("Pila de nombres");
         System.out.println("1.- Insertar");
         System.out.println("2.- Extraer");
@@ -18,11 +28,12 @@ public class PilaNombress {
         System.out.println("5.- Salir");
         System.out.println("Introduzca su opcion:");
         opcion = Leer.nextInt();
-        MenuSwitch(opcion);
+        i=MenuSwitch(opcion);
 
+        return i;
     }
 
-    public void MenuSwitch(int opcion){
+    public int MenuSwitch(int opcion){
 
             String nombre=null;
 
@@ -37,6 +48,8 @@ public class PilaNombress {
                 System.out.println(nombre + "ha sido eliminado");
                 break;
             case 3:
+                mod();
+                /* 
                 System.out.println("introduzca el nombre a modificar: ");
                 nombre=Leer.next();
                 ind=PilaNombres.indexOf(nombre);
@@ -44,23 +57,23 @@ public class PilaNombress {
                     System.out.print("capture nuevo nombre:");
                     nombre=Leer.next();
                     PilaNombres.set(ind, nombre);
+                    
 
                 }else 
-                    System.out.println("nombre no encontrado");
+                    System.out.println("nombre: "+ nombre +" no encontrado");
 
+                    */
                 break;
             case 4:
                 System.out.println(PilaNombres);
                 break;
             case 5:
-                System.out.println("Saliendo del programa");
-                System.exit(0);
-                break;
+                return 0;
             default:
                 System.out.println("Opcion no valida");
                 break;
-            
         }
+        return 0;
     }
 
     public void Capturar(){
@@ -76,13 +89,40 @@ public class PilaNombress {
 
     }
 
+    public void mod(){
+
+        int ind;
+        String nombre=null;
+
+        System.out.println("introduzca el nombre a modificar: ");
+                nombre=Leer.next();
+                ind=PilaNombres.indexOf(nombre);
+                if (ind!=-1){
+                    System.out.print("capture nuevo nombre:");
+                    nombre=Leer.next();
+                    PilaNombres.set(ind, nombre);
+                    }else 
+                    System.out.println("nombre: "+ nombre +" no encontrado");
+
+        
+    }
+
 
     public static void main(String[] args) {
+
+        System.out.println("T.E. :"+ System.nanoTime());
+        long Nano= System.nanoTime();
+
 
         PilaNombress pila = new PilaNombress();
         for(int i=1; i>0; i++){
         pila.MenuCons();
         }
+        long nanof= System.nanoTime();
+        long Nanot=nanof-Nano;
+        System.out.println("tiempo de ejecucion =" + Nanot);
+
+
 //ciclo infinito 
     /* for(int i=1; i<0; i++){
             System.out.println( i );
