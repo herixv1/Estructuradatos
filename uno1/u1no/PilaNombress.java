@@ -9,18 +9,17 @@ public class PilaNombress {
 
     Stack <String> PilaNombres = new Stack<String>();
     Scanner Leer= new Scanner(System.in);
-    
 
     public int MenuCons(){
         long maxM = runtime.maxMemory();
         long freeM = runtime.freeMemory();
         long usedM = maxM - freeM;
-        System.out.println("Memoria maxima: " + maxM + " bytes");
+        System.out.println("\n Memoria maxima: " + maxM + " bytes");
         System.out.println("Memoria libre: " + freeM + " bytes");
         System.out.println("Memoria utilizada: " + usedM + " bytes");
         
         int opcion=0, i=0;
-        System.out.println("Pila de nombres");
+        System.out.println("\n Pila de nombres");
         System.out.println("1.- Insertar");
         System.out.println("2.- Extraer");
         System.out.println("3.- Modificar");
@@ -68,6 +67,7 @@ public class PilaNombress {
                 System.out.println(PilaNombres);
                 break;
             case 5:
+                System.exit(0);
                 return 0;
             default:
                 System.out.println("Opcion no valida");
@@ -90,6 +90,7 @@ public class PilaNombress {
     }
 
     public void mod(){
+        long nanoi = System.nanoTime();
 
         int ind;
         String nombre=null;
@@ -104,23 +105,25 @@ public class PilaNombress {
                     }else 
                     System.out.println("nombre: "+ nombre +" no encontrado");
 
-        
+        long nanof= System.nanoTime();
+        long Nanot=nanof-nanoi;
+        double Seg=Nanot/1000000000.0;
+        System.out.println("tiempo de ejecucion =" + Nanot);
+        System.out.println("tiempo en segundos =" + Seg);
+
     }
 
 
     public static void main(String[] args) {
 
         System.out.println("T.E. :"+ System.nanoTime());
-        long Nano= System.nanoTime();
+
 
 
         PilaNombress pila = new PilaNombress();
         for(int i=1; i>0; i++){
         pila.MenuCons();
         }
-        long nanof= System.nanoTime();
-        long Nanot=nanof-Nano;
-        System.out.println("tiempo de ejecucion =" + Nanot);
 
 
 //ciclo infinito 
