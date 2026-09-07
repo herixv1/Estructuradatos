@@ -3,11 +3,11 @@ package u1no;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class PilaNombress {
+public class PilaAux {
 
     Runtime runtime = Runtime.getRuntime();
 
-    Stack<String> PilaNombres = new Stack<String>();
+    Stack<String> PilaAux = new Stack<String>();
     Scanner Leer = new Scanner(System.in);
 
     public int MenuCons() {
@@ -41,7 +41,7 @@ public class PilaNombress {
                 Capturar();
                 break;
             case 2:
-                nombre = PilaNombres.pop();
+                nombre = PilaAux.pop();
                 System.out.println(nombre + "ha sido eliminado");
                 break;
             case 3:
@@ -62,7 +62,7 @@ public class PilaNombress {
                  */
                 break;
             case 4:
-                System.out.println(PilaNombres);
+                System.out.println(PilaAux);
                 break;
             case 5:
                 System.exit(0);
@@ -83,25 +83,52 @@ public class PilaNombress {
 
     public void Insertar(String nombre) {
 
-        PilaNombres.push(nombre);
+        PilaAux.push(nombre);
 
     }
 
     public void mod() {
+
         long nanoi = System.nanoTime();
 
-        int ind;
-        String nombre = null;
+        if (PilaAux.isEmpty()) {
+            System.out.println("La pila está vacía, no hay elementos para modificar.");
+            return;
+        }
 
-        System.out.println("introduzca el nombre a modificar: ");
-        nombre = Leer.next();
-        ind = PilaNombres.indexOf(nombre);
-        if (ind != -1) {
-            System.out.print("capture nuevo nombre:");
-            nombre = Leer.next();
-            PilaNombres.set(ind, nombre);
-        } else
-            System.out.println("nombre: " + nombre + " no encontrado");
+        // Pila temporal
+        Stack<String> auxiliar = new Stack<>();
+
+        // Desapilar todos los elementos de la pila original hacia la auxiliar
+        // El último elemento en ser desapilado es el que originalmente estaba en el
+        // fondo
+        while (!PilaAux.isEmpty()) {
+            auxiliar.push(PilaAux.pop());
+        }
+
+        // En este punto, auxiliar tiene los elementos en orden inverso
+        // El tope de auxiliar es el fondo original
+        String fondoOriginal = auxiliar.peek();
+        System.out.println("Elemento en el fondo: " + fondoOriginal);
+
+        System.out.print("Capture nuevo nombre para el fondo: ");
+        String nuevo = Leer.next();
+
+        // Reemplazar el fondo: sacar el tope de auxiliar y poner el nuevo
+        auxiliar.pop();
+        auxiliar.push(nuevo);
+
+        // Regresar los elementos a la pila original
+        // Como auxiliar está invertida, al desapilar y apilar en original se restaura
+        // el orden original
+        while (!auxiliar.isEmpty()) {
+            PilaAux.push(auxiliar.pop());
+        }
+
+        // Limpiar la pila auxiliar y liberar referencia
+        auxiliar.clear();
+        auxiliar = null;
+        System.gc(); // invocar al recolector de basura
 
         long nanof = System.nanoTime();
         long Nanot = nanof - nanoi;
@@ -115,7 +142,7 @@ public class PilaNombress {
 
         System.out.println("T.E. :" + System.nanoTime());
 
-        PilaNombress pila = new PilaNombress();
+        PilaAux pila = new PilaAux();
         for (int i = 1; i > 0; i++) {
             pila.MenuCons();
         }
@@ -130,4 +157,5 @@ public class PilaNombress {
          * }
          */
     }
+
 }

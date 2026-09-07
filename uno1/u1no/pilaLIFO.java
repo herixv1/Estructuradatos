@@ -3,11 +3,11 @@ package u1no;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class PilaNombress {
+public class pilaLIFO {
 
     Runtime runtime = Runtime.getRuntime();
 
-    Stack<String> PilaNombres = new Stack<String>();
+    Stack<String> pilaLIFO = new Stack<String>();
     Scanner Leer = new Scanner(System.in);
 
     public int MenuCons() {
@@ -41,7 +41,7 @@ public class PilaNombress {
                 Capturar();
                 break;
             case 2:
-                nombre = PilaNombres.pop();
+                nombre = pilaLIFO.pop();
                 System.out.println(nombre + "ha sido eliminado");
                 break;
             case 3:
@@ -62,7 +62,7 @@ public class PilaNombress {
                  */
                 break;
             case 4:
-                System.out.println(PilaNombres);
+                System.out.println(pilaLIFO);
                 break;
             case 5:
                 System.exit(0);
@@ -83,39 +83,44 @@ public class PilaNombress {
 
     public void Insertar(String nombre) {
 
-        PilaNombres.push(nombre);
+        pilaLIFO.push(nombre);
 
     }
 
     public void mod() {
         long nanoi = System.nanoTime();
 
-        int ind;
-        String nombre = null;
+        if (pilaLIFO.isEmpty()) {
+            System.out.println("La pila está vacía, no hay elementos para modificar.");
+            return;
+        }
 
-        System.out.println("introduzca el nombre a modificar: ");
-        nombre = Leer.next();
-        ind = PilaNombres.indexOf(nombre);
-        if (ind != -1) {
-            System.out.print("capture nuevo nombre:");
-            nombre = Leer.next();
-            PilaNombres.set(ind, nombre);
-        } else
-            System.out.println("nombre: " + nombre + " no encontrado");
+        // Mostrar el elemento actual en el tope
+        String actual = pilaLIFO.peek();
+        System.out.println("Elemento en el tope: " + actual);
+
+        // Pedir nuevo nombre para reemplazar el tope
+        System.out.print("Capture nuevo nombre para el tope: ");
+        String nuevo = Leer.next();
+
+        // Sacar el tope y descartarlo (no se usa)
+        pilaLIFO.pop();
+
+        // Insertar el nuevo nombre (queda como nuevo tope)
+        pilaLIFO.push(nuevo);
 
         long nanof = System.nanoTime();
         long Nanot = nanof - nanoi;
         double Seg = Nanot / 1000000000.0;
         System.out.println("tiempo de ejecucion =" + Nanot);
         System.out.println("tiempo en segundos =" + Seg);
-
     }
 
     public static void main(String[] args) {
 
         System.out.println("T.E. :" + System.nanoTime());
 
-        PilaNombress pila = new PilaNombress();
+        pilaLIFO pila = new pilaLIFO();
         for (int i = 1; i > 0; i++) {
             pila.MenuCons();
         }
@@ -130,4 +135,5 @@ public class PilaNombress {
          * }
          */
     }
+
 }
