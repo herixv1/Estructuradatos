@@ -87,12 +87,21 @@ public class PilaNombress {
 
     }
 
+<<<<<<< HEAD
     public void mod() {
         long nanoi = System.nanoTime();
 
         int ind;
         String nombre = null;
 
+=======
+    public void mod(){
+
+        long nanoi = System.nanoTime();
+
+        int ind;
+        String nombre=null;
+>>>>>>> c46ea5d (nos)
         System.out.println("introduzca el nombre a modificar: ");
         nombre = Leer.next();
         ind = PilaNombres.indexOf(nombre);
