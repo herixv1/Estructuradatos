@@ -4,14 +4,14 @@ import javax.swing.JOptionPane;
 
 public class Facts {
 
-    public static int factorial(int n) {
+    public static long factorial(long n) {
 
         if (n == 0) {
             return 1;
         } else {
             return n * factorial(n - 1);
         }
-        
+
     }
 
     public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class Facts {
     public void menu() {
 
         JOptionPane.showMessageDialog(null, "calculadora de factoriales");
-        int n = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un numero entero positivo:"));
+        long n = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un numero entero positivo:"));
         JOptionPane.showMessageDialog(null, "El factorial de " + n + " es: " + factorial(n));
         
     }
