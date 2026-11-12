@@ -29,14 +29,14 @@ public class ParImpCruz {
         ParImpCruz r = new ParImpCruz();
         Scanner Cruz = new Scanner(System.in);
 
-        System.out.println("Ingrese un número: ");
+        System.out.println("Ingrese un numero: ");
         int n = Cruz.nextInt();
         r.Par(n);
 
         if (r.Par(n)) {//lee directamente el boolean que retornan los metodos
-            System.out.println("El número " + n + " es par.");
+            System.out.println("El numero " + n + " es par.");
         } else {
-            System.out.println("El número " + n + " es impar.");
+            System.out.println("El numero " + n + " es impar.");
         }
 
     }

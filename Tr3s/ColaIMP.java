@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class ColaImpresion {
+public class ColaIMP {
 
     Queue<Documentos> colas=new ArrayDeque<Documentos>();
     Documentos doc=new Documentos();
@@ -101,7 +101,7 @@ public class ColaImpresion {
     }
     public static void main(String[] args) {
 
-        ColaImpresion coImp = new ColaImpresion();
+        ColaIMP coImp = new ColaIMP();
         while(true) {
             coImp.menu();
         }
